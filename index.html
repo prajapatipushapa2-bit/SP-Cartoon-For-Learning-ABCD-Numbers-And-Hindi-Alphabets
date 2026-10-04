@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP Cartoon – Learning ABCD, Numbers & Hindi Alphabet</title>
+  <!-- Google Fonts: Fredoka & Baloo 2 for kid-friendly playful typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800;900&family=Fredoka:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            kids: ['"Fredoka"', '"Baloo 2"', 'sans-serif'],
+            hindi: ['"Baloo 2"', '"Fredoka"', 'sans-serif'],
+          },
+          colors: {
+            brandYellow: '#FFDE59',
+            brandOrange: '#FF914D',
+            brandPink: '#FF66C4',
+            brandPurple: '#8C52FF',
+            brandBlue: '#5CE1E6',
+            brandGreen: '#7ED957',
+            brandRed: '#FF5757',
+          },
+          keyframes: {
+            bounceSlow: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-4deg)' },
+              '50%': { transform: 'rotate(4deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 10px rgba(255,222,89,0.7))' },
+              '50%': { transform: 'scale(1.05)', filter: 'drop-shadow(0 0 20px rgba(255,145,77,0.9))' },
+            },
+            floatCloud: {
+              '0%': { transform: 'translateX(-10%)' },
+              '50%': { transform: 'translateX(10%)' },
+              '100%': { transform: 'translateX(-10%)' },
+            }
+          },
+          animation: {
+            bounceSlow: 'bounceSlow 3s ease-in-out infinite',
+            wiggle: 'wiggle 2s ease-in-out infinite',
+            pulseGlow: 'pulseGlow 2.5s infinite',
+            floatCloud: 'floatCloud 18s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Fredoka', 'Baloo 2', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      background: linear-gradient(180deg, #bbf2f6 0%, #e0f8ff 25%, #fff9e6 60%, #e8f9e9 100%);
+      overflow-x: hidden;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 10px;
+      width: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #FF914D;
+      border-radius: 999px;
+    }
+    .card-shadow {
+      box-shadow: 0 10px 0 0 rgba(0,0,0,0.12);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .card-shadow:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 16px 0 0 rgba(0,0,0,0.14);
+    }
+    .card-shadow:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 4px 0 0 rgba(0,0,0,0.12);
+    }
+    .bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatUp 8s linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+    }
+    /* Confetti Particle */
+    .confetti {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fallDown 3s ease-in forwards;
+    }
+    @keyframes fallDown {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen relative">
+
+  <!-- Floating Background Ambient Elements -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+    <div class="absolute -top-10 left-10 text-6xl animate-bounceSlow" style="animation-delay: 0.5s;">🎈</div>
+    <div class="absolute top-40 right-12 text-5xl animate-bounceSlow" style="animation-delay: 1.5s;">⭐</div>
+    <div class="absolute top-[45%] left-4 text-5xl animate-wiggle">🚀</div>
+    <div class="absolute top-[60%] right-6 text-6xl animate-bounceSlow" style="animation-delay: 2s;">🌈</div>
+    <div class="absolute bottom-20 left-16 text-5xl animate-bounceSlow">🧸</div>
+    <div class="absolute top-16 left-1/3 w-48 h-16 bg-white/70 rounded-full blur-sm animate-floatCloud"></div>
+    <div class="absolute top-36 right-1/4 w-60 h-20 bg-white/60 rounded-full blur-sm animate-floatCloud" style="animation-delay: -5s;"></div>
+  </div>
+
+  <!-- FIXED STICKY TOP SCORE & AUDIO STATUS BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-4 border-yellow-300 shadow-lg px-4 py-2.5 transition-all">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      
+      <!-- Brand Logo & Name -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 bg-gradient-to-tr from-amber-400 via-pink-400 to-purple-500 rounded-2xl flex items-center justify-center text-2xl shadow-md border-2 border-white group-hover:rotate-12 transition-transform">
+          🎨
+        </div>
+        <div>
+          <span class="text-2xl md:text-3xl font-black tracking-tight text-pink-600 drop-shadow-sm flex items-center gap-1 font-kids">
+            SP <span class="text-amber-500">CARTOON</span>
+          </span>
+          <p class="text-xs font-bold text-sky-600 hidden sm:block">Kids Fun Learning Hub 🚀</p>
+        </div>
+      </a>
+
+      <!-- Quick Nav Buttons -->
+      <nav class="hidden lg:flex items-center gap-2 font-bold text-sm">
+        <a href="#abcd-section" class="px-3 py-1.5 rounded-xl bg-pink-100 hover:bg-pink-200 text-pink-700 transition">🔤 ABCD</a>
+        <a href="#abcd-game" class="px-3 py-1.5 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-700 transition">🎯 ABC Game</a>
+        <a href="#numbers-section" class="px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 transition">🔢 1-100 Numbers</a>
+        <a href="#counting-game" class="px-3 py-1.5 rounded-xl bg-orange-100 hover:bg-orange-200 text-orange-800 transition">🍎 Count Game</a>
+        <a href="#hindi-section" class="px-3 py-1.5 rounded-xl bg-green-100 hover:bg-green-200 text-green-800 transition">🇮🇳 हिंदी वर्णमाला</a>
+        <a href="#mixed-quiz" class="px-3 py-1.5 rounded-xl bg-blue-100 hover:bg-blue-200 text-blue-800 transition">🧠 Super Quiz</a>
+        <a href="#rewards-section" class="px-3 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-yellow-800 transition">🏆 Badges</a>
+      </nav>
+
+      <!-- Live Score Board & Sound Toggle -->
+      <div class="flex items-center gap-3">
+        <!-- Live Score Widget -->
+        <div class="flex items-center gap-2 bg-amber-100/90 border-2 border-amber-300 px-3 py-1.5 rounded-full shadow-inner">
+          <span class="text-xl">⭐</span>
+          <span class="text-sm font-extrabold text-amber-900">Score:</span>
+          <span id="top-score-display" class="text-base font-black text-pink-600 min-w-[28px] text-center">0</span>
+        </div>
+
+        <!-- Lives Remaining -->
+        <div class="flex items-center gap-1 bg-rose-100 border-2 border-rose-300 px-3 py-1.5 rounded-full shadow-inner">
+          <span class="text-lg">❤️</span>
+          <span id="lives-display" class="text-sm font-extrabold text-rose-700">3</span>
+        </div>
+
+        <!-- Global Audio Control Button -->
+        <button id="toggle-sound-btn" onclick="toggleGlobalSound()" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-extrabold text-sm rounded-full shadow flex items-center gap-1 transition">
+          <span id="sound-icon">🔊</span>
+          <span id="sound-status-txt" class="hidden sm:inline">Voice ON</span>
+        </button>
+
+        <!-- Parents Setting Modal Trigger -->
+        <button onclick="openParentModal()" class="w-9 h-9 bg-slate-100 hover:bg-slate-200 active:scale-90 text-slate-700 rounded-full flex items-center justify-center text-lg border-2 border-slate-300 transition" title="Parent Controls">
+          ⚙️
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER CONTAINER -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 py-6 space-y-16">
+
+    <!-- 1. ATTRACTIVE HERO SECTION -->
+    <section id="hero" class="relative rounded-3xl bg-gradient-to-br from-amber-200 via-pink-200 to-sky-200 p-6 md:p-12 border-4 border-white shadow-2xl overflow-hidden text-center">
+      <!-- Decorative Cartoon Clouds and Stars -->
+      <div class="absolute -top-10 -left-10 w-36 h-36 bg-white/80 rounded-full blur-md pointer-events-none"></div>
+      <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-yellow-100/90 rounded-full blur-md pointer-events-none"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <!-- Floating Mascot Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/90 border-2 border-pink-400 px-5 py-2 rounded-full shadow-md text-pink-700 font-extrabold text-sm md:text-base animate-bounceSlow mb-4">
+          <span>🌟</span> 100% Free & Safe Kids Education <span>🎨</span>
+        </div>
+
+        <!-- Big Title -->
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-purple-900 tracking-tight leading-tight drop-shadow-sm font-kids">
+          SP Cartoon for Learning <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-amber-500 to-sky-500">
+            ABCD, Numbers & Hindi Alphabet
+          </span>
+        </h1>
+
+        <!-- Subtitle & Slogan -->
+        <p class="mt-4 text-lg md:text-2xl font-extrabold text-sky-800">
+          "Play Games • Learn Fast • Have Fun!" 🎈
+        </p>
+        <p class="mt-2 text-sm md:text-base font-semibold text-slate-600 max-w-2xl mx-auto">
+          Learn • Play • Listen • Practice! बच्चों के लिए खास तौर पर तैयार किया गया रंगीन कार्टून सीखने का संसार।
+        </p>
+
+        <!-- Cute Cartoon Character Badges Preview -->
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-3 text-3xl md:text-4xl">
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-yellow-300 transform hover:scale-125 transition">🧒</span>
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-pink-300 transform hover:scale-125 transition">🍎</span>
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-purple-300 transform hover:scale-125 transition">🔤</span>
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-emerald-300 transform hover:scale-125 transition">🔢</span>
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-blue-300 transform hover:scale-125 transition">अ आ</span>
+          <span class="bg-white/80 p-2.5 rounded-2xl shadow-sm border border-rose-300 transform hover:scale-125 transition">⭐</span>
+        </div>
+
+        <!-- Big CTA Button -->
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="#abcd-section" class="px-8 py-4 bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-500 hover:to-green-600 text-white text-xl md:text-2xl font-black rounded-3xl shadow-xl border-4 border-white card-shadow flex items-center gap-3">
+            <span>🎮</span> Start Learning Now! <span>🚀</span>
+          </a>
+          <a href="#mini-games" class="px-6 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white text-lg md:text-xl font-black rounded-3xl shadow-xl border-4 border-white card-shadow flex items-center gap-2">
+            <span>🧩</span> Play 8 Mini Games
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION QUICK SHORTCUT TABS -->
+    <div class="flex items-center justify-center gap-3 overflow-x-auto pb-2 custom-scroll">
+      <a href="#abcd-section" class="flex-shrink-0 px-4 py-2 bg-pink-500 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-pink-600 flex items-center gap-1.5">
+        🔤 Learn ABCD
+      </a>
+      <a href="#abcd-game" class="flex-shrink-0 px-4 py-2 bg-purple-500 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-purple-600 flex items-center gap-1.5">
+        🎮 ABC Game
+      </a>
+      <a href="#numbers-section" class="flex-shrink-0 px-4 py-2 bg-amber-500 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-amber-600 flex items-center gap-1.5">
+        🔢 Numbers (1-100)
+      </a>
+      <a href="#counting-game" class="flex-shrink-0 px-4 py-2 bg-orange-500 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-orange-600 flex items-center gap-1.5">
+        🍎 Counting Game
+      </a>
+      <a href="#hindi-section" class="flex-shrink-0 px-4 py-2 bg-emerald-600 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-emerald-700 flex items-center gap-1.5">
+        🇮🇳 हिंदी वर्णमाला
+      </a>
+      <a href="#hindi-game" class="flex-shrink-0 px-4 py-2 bg-teal-500 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-teal-600 flex items-center gap-1.5">
+        🎯 हिंदी क्विज
+      </a>
+      <a href="#mixed-quiz" class="flex-shrink-0 px-4 py-2 bg-blue-600 text-white font-extrabold rounded-2xl shadow border-2 border-white hover:bg-blue-700 flex items-center gap-1.5">
+        🧠 All-in-One Quiz
+      </a>
+    </div>
+
+    <!-- 2. LEARN ENGLISH ABCD SECTION -->
+    <section id="abcd-section" class="bg-white/90 rounded-3xl p-6 md:p-8 border-4 border-pink-200 shadow-xl relative">
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-pink-100 pb-5">
+        <div class="text-center md:text-left">
+          <div class="inline-flex items-center gap-1 text-pink-600 font-extrabold text-sm bg-pink-100 px-3 py-1 rounded-full mb-1">
+            Section 1 • A to Z
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-800 flex items-center gap-2 justify-center md:justify-start">
+            <span>🔤</span> Learn English ABCD
+          </h2>
+          <p class="text-slate-600 font-medium text-sm sm:text-base">
+            किसी भी Card पर Click करें: Letter बड़ा दिखेगा, Cartoon बोलेगा और Pronunciation सुनाई देगा!
+          </p>
+        </div>
+        <!-- Pronounce all A-Z or Auto Play -->
+        <button onclick="playAbcSongVoice()" class="px-5 py-2.5 bg-pink-500 hover:bg-pink-600 active:scale-95 text-white font-black text-sm rounded-2xl shadow flex items-center gap-2 border-2 border-white transition">
+          <span>🔊</span> Read Full ABCD Song
+        </button>
+      </div>
+
+      <!-- Active ABCD Detail Spotlight Card -->
+      <div id="abc-spotlight" class="my-6 p-6 rounded-3xl bg-gradient-to-r from-pink-100 via-purple-100 to-amber-100 border-4 border-white shadow-lg flex flex-col md:flex-row items-center justify-around gap-6 text-center md:text-left transition-all">
+        <div class="flex items-center gap-4">
+          <div id="spotlight-letter" class="w-24 h-24 sm:w-28 sm:h-28 bg-pink-500 text-white rounded-3xl flex items-center justify-center text-6xl sm:text-7xl font-black border-4 border-white shadow-md animate-bounceSlow">
+            A
+          </div>
+          <div id="spotlight-emoji" class="text-6xl sm:text-7xl">
+            🍎
+          </div>
+        </div>
+        <div class="space-y-1">
+          <p class="text-pink-600 font-black text-sm tracking-wider uppercase">Example Word</p>
+          <h3 id="spotlight-word" class="text-3xl sm:text-4xl font-black text-purple-900">Apple</h3>
+          <p id="spotlight-phrase" class="text-xl sm:text-2xl font-extrabold text-slate-700">"A for Apple"</p>
+        </div>
+        <div>
+          <button id="spotlight-voice-btn" onclick="speakSpotlightAbc()" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-black rounded-2xl shadow-lg border-2 border-white flex items-center gap-2 text-lg">
+            <span>🔊</span> Listen Voice
+          </button>
+        </div>
+      </div>
+
+      <!-- 26 Alphabet Interactive Cards Grid -->
+      <div id="abcd-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4 mt-6">
+        <!-- Cards generated via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 3. ABCD MATCHING GAME -->
+    <section id="abcd-game" class="bg-gradient-to-br from-purple-100 via-indigo-50 to-pink-100 rounded-3xl p-6 md:p-8 border-4 border-purple-300 shadow-xl relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block bg-purple-200 text-purple-800 font-extrabold text-sm px-4 py-1 rounded-full mb-2">
+          Mini Game 1 • Object Match
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-purple-950 flex items-center justify-center gap-2">
+          <span>🎮</span> ABCD Object Matching Game
+        </h2>
+        <p class="text-slate-600 font-semibold mt-1">
+          ऊपर दिए गए Object को पहचानें और सही Alphabet चुनें!
+        </p>
+
+        <!-- Question Card -->
+        <div class="mt-6 bg-white rounded-3xl p-8 border-4 border-purple-200 shadow-xl max-w-md mx-auto relative overflow-hidden">
+          <div class="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">Guess the First Letter</div>
+          <div id="abc-game-emoji" class="text-8xl my-3 animate-bounceSlow cursor-pointer" onclick="speakAbcGameHint()">
+            🍎
+          </div>
+          <div id="abc-game-hint" class="text-xl font-black text-slate-800">
+            "What letter does this start with?"
+          </div>
+
+          <!-- Answer Feedback Box -->
+          <div id="abc-game-feedback" class="mt-3 text-lg font-black h-8 text-purple-600 transition-all">
+            Click an option below! 👇
+          </div>
+        </div>
+
+        <!-- 4 Alphabet Options -->
+        <div id="abc-game-options" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg mx-auto mt-6">
+          <!-- Buttons dynamically rendered -->
+        </div>
+
+        <!-- Next Question & Hint Buttons -->
+        <div class="mt-6 flex justify-center gap-4">
+          <button onclick="speakAbcGameHint()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 font-black text-amber-900 rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>💡</span> Voice Hint
+          </button>
+          <button onclick="generateAbcGameQuestion()" class="px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-black rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>⏭️</span> Next Letter
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. NUMBERS LEARNING (1 TO 100) SECTION -->
+    <section id="numbers-section" class="bg-white/90 rounded-3xl p-6 md:p-8 border-4 border-amber-200 shadow-xl relative">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-amber-100 pb-5">
+        <div class="text-center md:text-left">
+          <div class="inline-flex items-center gap-1 text-amber-800 font-extrabold text-sm bg-amber-100 px-3 py-1 rounded-full mb-1">
+            Section 2 • 1 to 100 Counting
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-800 flex items-center gap-2 justify-center md:justify-start">
+            <span>🔢</span> Numbers Learning (1 to 100)
+          </h2>
+          <p class="text-slate-600 font-medium text-sm sm:text-base">
+            किसी भी Number पर click करें: उसकी गिनती, वस्तुएं (Objects) और उच्चारण सुनें!
+          </p>
+        </div>
+
+        <!-- Filter Range Buttons (1-10, 11-20, etc.) -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 font-bold text-xs sm:text-sm">
+          <button onclick="setNumberRange(1, 10)" class="num-filter-btn px-3 py-1.5 rounded-xl bg-amber-500 text-white shadow" data-range="1-10">1 - 10</button>
+          <button onclick="setNumberRange(1, 20)" class="num-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200" data-range="1-20">1 - 20</button>
+          <button onclick="setNumberRange(21, 50)" class="num-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200" data-range="21-50">21 - 50</button>
+          <button onclick="setNumberRange(51, 100)" class="num-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200" data-range="51-100">51 - 100</button>
+          <button onclick="setNumberRange(1, 100)" class="num-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200" data-range="1-100">All 100</button>
+        </div>
+      </div>
+
+      <!-- Numbers Interactive Spotlight Card -->
+      <div id="number-spotlight" class="my-6 p-6 rounded-3xl bg-gradient-to-r from-amber-100 via-orange-100 to-yellow-100 border-4 border-white shadow-lg flex flex-col md:flex-row items-center justify-around gap-6 text-center md:text-left transition-all">
+        <div class="flex items-center gap-4">
+          <div id="spotlight-num-val" class="w-24 h-24 sm:w-28 sm:h-28 bg-amber-500 text-white rounded-3xl flex items-center justify-center text-5xl sm:text-6xl font-black border-4 border-white shadow-md animate-bounceSlow">
+            5
+          </div>
+          <div>
+            <span class="text-xs uppercase font-black text-amber-700">Number Name</span>
+            <h3 id="spotlight-num-name" class="text-3xl sm:text-4xl font-black text-amber-950">Five</h3>
+            <p id="spotlight-num-hindi" class="text-lg font-extrabold text-orange-700">पाँच (5)</p>
+          </div>
+        </div>
+
+        <!-- Counted Objects Visual Display -->
+        <div class="max-w-md bg-white/80 p-3 rounded-2xl border-2 border-amber-200 shadow-inner">
+          <p class="text-xs font-bold text-slate-500 mb-1">Visual Count:</p>
+          <div id="spotlight-num-objects" class="flex flex-wrap justify-center gap-1 text-2xl max-h-24 overflow-y-auto custom-scroll">
+            🍎 🍎 🍎 🍎 🍎
+          </div>
+        </div>
+
+        <div>
+          <button id="spotlight-num-voice-btn" onclick="speakSpotlightNum()" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 active:scale-95 text-white font-black rounded-2xl shadow-lg border-2 border-white flex items-center gap-2 text-lg">
+            <span>🔊</span> Speak Number
+          </button>
+        </div>
+      </div>
+
+      <!-- Numbers Grid -->
+      <div id="numbers-grid" class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-2.5 sm:gap-3 mt-6">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- 5. NUMBER COUNTING GAME -->
+    <section id="counting-game" class="bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100 rounded-3xl p-6 md:p-8 border-4 border-orange-300 shadow-xl relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block bg-orange-200 text-orange-900 font-extrabold text-sm px-4 py-1 rounded-full mb-2">
+          Mini Game 2 • Count & Win
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-amber-950 flex items-center justify-center gap-2">
+          <span>🎯</span> How Many Objects? Counting Game
+        </h2>
+        <p class="text-slate-600 font-semibold mt-1">
+          वस्तुओं को ध्यान से गिनें (Count करें) और सही संख्या वाले बटन पर क्लिक करें!
+        </p>
+
+        <!-- Count Objects Display Box -->
+        <div class="mt-6 bg-white rounded-3xl p-6 md:p-8 border-4 border-orange-200 shadow-xl max-w-lg mx-auto">
+          <div class="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">Count Them!</div>
+          <div id="count-game-objects" class="flex flex-wrap justify-center gap-3 text-4xl sm:text-5xl my-4 min-h-[90px] items-center p-3 bg-amber-50 rounded-2xl border-2 border-amber-200">
+            <!-- Dynamic emojis like 🍎 🍎 🍎 🍎 -->
+          </div>
+          <h3 id="count-game-question" class="text-xl sm:text-2xl font-black text-slate-800">
+            How many apples?
+          </h3>
+          <div id="count-game-feedback" class="mt-3 text-lg font-black h-8 text-orange-600 transition-all">
+            Choose the correct count! 👇
+          </div>
+        </div>
+
+        <!-- 4 Count Options -->
+        <div id="count-game-options" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md mx-auto mt-6">
+          <!-- Dynamic options -->
+        </div>
+
+        <!-- Next / Repeat Button -->
+        <div class="mt-6 flex justify-center gap-4">
+          <button onclick="speakCountQuestion()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 font-black text-amber-900 rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>🔊</span> Speak Question
+          </button>
+          <button onclick="generateCountGameQuestion()" class="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-black rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>⏭️</span> Next Count
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. HINDI ALPHABET LEARNING SECTION (स्वर & व्यंजन) -->
+    <section id="hindi-section" class="bg-white/90 rounded-3xl p-6 md:p-8 border-4 border-emerald-300 shadow-xl relative font-hindi">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 border-b-4 border-emerald-100 pb-5">
+        <div class="text-center md:text-left">
+          <div class="inline-flex items-center gap-1 text-emerald-800 font-extrabold text-sm bg-emerald-100 px-3 py-1 rounded-full mb-1">
+            Section 3 • हिंदी वर्णमाला
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-800 flex items-center gap-2 justify-center md:justify-start">
+            <span>🇮🇳</span> हिंदी वर्णमाला (स्वर एवं व्यंजन)
+          </h2>
+          <p class="text-slate-600 font-medium text-sm sm:text-base">
+            किसी भी अक्षर पर क्लिक करें: "अ से अनार", "क से कबूतर" आदि की आवाज़ और चित्र देखें!
+          </p>
+        </div>
+
+        <!-- Quick Tabs for Swar / Vyanjan -->
+        <div class="flex items-center gap-2 font-bold text-sm">
+          <button onclick="filterHindiGroup('all')" id="btn-hindi-all" class="px-4 py-2 rounded-2xl bg-emerald-600 text-white shadow">सभी (All)</button>
+          <button onclick="filterHindiGroup('swar')" id="btn-hindi-swar" class="px-4 py-2 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200">स्वर (अ - अः)</button>
+          <button onclick="filterHindiGroup('vyanjan')" id="btn-hindi-vyanjan" class="px-4 py-2 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200">व्यंजन (क - ज्ञ)</button>
+        </div>
+      </div>
+
+      <!-- Hindi Spotlight Card -->
+      <div id="hindi-spotlight" class="my-6 p-6 rounded-3xl bg-gradient-to-r from-emerald-100 via-teal-100 to-green-100 border-4 border-white shadow-lg flex flex-col md:flex-row items-center justify-around gap-6 text-center md:text-left transition-all">
+        <div class="flex items-center gap-4">
+          <div id="spotlight-hindi-char" class="w-24 h-24 sm:w-28 sm:h-28 bg-emerald-600 text-white rounded-3xl flex items-center justify-center text-5xl sm:text-6xl font-black border-4 border-white shadow-md animate-bounceSlow font-hindi">
+            अ
+          </div>
+          <div id="spotlight-hindi-emoji" class="text-6xl sm:text-7xl">
+            🍎
+          </div>
+        </div>
+        <div class="space-y-1">
+          <p class="text-emerald-700 font-black text-sm uppercase tracking-wider">अक्षर व शब्द</p>
+          <h3 id="spotlight-hindi-word" class="text-3xl sm:text-4xl font-black text-emerald-950 font-hindi">अनार (Pomegranate)</h3>
+          <p id="spotlight-hindi-phrase" class="text-xl sm:text-2xl font-extrabold text-slate-700 font-hindi">"अ से अनार"</p>
+        </div>
+        <div>
+          <button id="spotlight-hindi-voice-btn" onclick="speakSpotlightHindi()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-black rounded-2xl shadow-lg border-2 border-white flex items-center gap-2 text-lg">
+            <span>🔊</span> आवाज़ सुनें
+          </button>
+        </div>
+      </div>
+
+      <!-- Hindi Swar Grid -->
+      <div id="hindi-swar-container" class="mt-6">
+        <h3 class="text-xl font-black text-emerald-800 flex items-center gap-2 mb-3">
+          <span>🍉</span> हिंदी स्वर (Vowels)
+        </h3>
+        <div id="hindi-swar-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Hindi Vyanjan Grid -->
+      <div id="hindi-vyanjan-container" class="mt-10">
+        <h3 class="text-xl font-black text-teal-800 flex items-center gap-2 mb-3">
+          <span>🦁</span> हिंदी व्यंजन (Consonants)
+        </h3>
+        <div id="hindi-vyanjan-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HINDI ALPHABET MATCHING GAME -->
+    <section id="hindi-game" class="bg-gradient-to-br from-teal-100 via-emerald-50 to-green-100 rounded-3xl p-6 md:p-8 border-4 border-teal-300 shadow-xl relative font-hindi">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block bg-teal-200 text-teal-900 font-extrabold text-sm px-4 py-1 rounded-full mb-2">
+          Mini Game 3 • हिंदी पहचानो
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-teal-950 flex items-center justify-center gap-2">
+          <span>🎮</span> हिंदी वर्णमाला क्विज गेम
+        </h2>
+        <p class="text-slate-600 font-semibold mt-1">
+          चित्र देखें और बताएं कि यह शब्द किस हिंदी अक्षर से शुरू होता है?
+        </p>
+
+        <!-- Question Box -->
+        <div class="mt-6 bg-white rounded-3xl p-8 border-4 border-teal-200 shadow-xl max-w-md mx-auto">
+          <div class="text-xs font-black text-slate-400 tracking-widest uppercase mb-1">पहचानो और चुनो</div>
+          <div id="hindi-game-emoji" class="text-8xl my-3 animate-bounceSlow cursor-pointer" onclick="speakHindiGameHint()">
+            🥭
+          </div>
+          <div id="hindi-game-hint" class="text-xl font-black text-slate-800">
+            यह किस अक्षर से शुरू होता है?
+          </div>
+          <div id="hindi-game-feedback" class="mt-3 text-lg font-black h-8 text-teal-700 transition-all">
+            सही अक्षर पर क्लिक करें! 👇
+          </div>
+        </div>
+
+        <!-- 4 Hindi Letter Options -->
+        <div id="hindi-game-options" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md mx-auto mt-6">
+          <!-- Dynamic Buttons -->
+        </div>
+
+        <div class="mt-6 flex justify-center gap-4">
+          <button onclick="speakHindiGameHint()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 font-black text-amber-900 rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>💡</span> आवाज़ से संकेत
+          </button>
+          <button onclick="generateHindiGameQuestion()" class="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-black rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>⏭️</span> अगला सवाल
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. MIXED LEARNING GAME (WHAT COMES NEXT? + SUPER QUIZ) -->
+    <section id="mixed-quiz" class="bg-gradient-to-br from-blue-100 via-sky-50 to-indigo-100 rounded-3xl p-6 md:p-8 border-4 border-blue-300 shadow-xl relative">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="inline-block bg-blue-200 text-blue-900 font-extrabold text-sm px-4 py-1 rounded-full mb-2">
+          Mini Game 4 • Mixed Super Challenge
+        </div>
+        <h2 class="text-2xl sm:text-4xl font-black text-blue-950 flex items-center justify-center gap-2">
+          <span>🧠</span> Mixed Learning Super Quiz
+        </h2>
+        <p class="text-slate-600 font-semibold mt-1">
+          ABCD, Numbers और हिंदी के मजेदार सवाल: "What comes next?", "Missing letter", आदि!
+        </p>
+
+        <!-- Dynamic Question Card -->
+        <div class="mt-6 bg-white rounded-3xl p-8 border-4 border-blue-200 shadow-xl max-w-lg mx-auto">
+          <div class="flex items-center justify-between text-xs font-black text-blue-600 uppercase mb-2">
+            <span id="mixed-category-badge" class="bg-blue-100 px-3 py-1 rounded-full">Alphabet Sequence</span>
+            <span>+10 Points</span>
+          </div>
+
+          <div id="mixed-question-text" class="text-2xl sm:text-3xl font-black text-slate-800 my-4 leading-snug">
+            Which letter comes after B?
+          </div>
+
+          <div id="mixed-visual-hint" class="text-5xl my-3">
+            🅰️ 🅱️ ❓
+          </div>
+
+          <div id="mixed-feedback" class="mt-3 text-lg font-black h-8 text-blue-600 transition-all">
+            Choose your answer!
+          </div>
+        </div>
+
+        <!-- 4 Options -->
+        <div id="mixed-options-container" class="grid grid-cols-2 gap-4 max-w-md mx-auto mt-6">
+          <!-- Dynamic options -->
+        </div>
+
+        <div class="mt-6 flex justify-center gap-4">
+          <button onclick="speakMixedQuestion()" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-500 font-black text-amber-900 rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>🔊</span> Read Question
+          </button>
+          <button onclick="generateMixedQuestion()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-2xl shadow border-2 border-white flex items-center gap-2">
+            <span>⏭️</span> New Challenge
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. ALL 8 MINI-GAMES QUICK ACCESS HUB -->
+    <section id="mini-games" class="bg-white/90 rounded-3xl p-6 md:p-8 border-4 border-purple-200 shadow-xl">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="bg-purple-100 text-purple-800 font-extrabold text-sm px-4 py-1 rounded-full">Interactive Play Zone</span>
+        <h2 class="text-3xl font-black text-slate-800 mt-2">🧩 8 Fun Kids Learning Mini Games</h2>
+        <p class="text-slate-600 font-medium">Click on any game to jump straight into action!</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Game 1 -->
+        <a href="#abcd-game" class="p-5 bg-pink-50 hover:bg-pink-100 rounded-2xl border-2 border-pink-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">🔤</div>
+            <h3 class="font-black text-lg text-pink-700">Game 1: Find the Letter</h3>
+            <p class="text-xs text-slate-600 mt-1">Identify the alphabet for animals and objects.</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-pink-600">Play Now →</span>
+        </a>
+
+        <!-- Game 2 -->
+        <a href="#abcd-game" class="p-5 bg-purple-50 hover:bg-purple-100 rounded-2xl border-2 border-purple-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">🍎</div>
+            <h3 class="font-black text-lg text-purple-700">Game 2: Match Object</h3>
+            <p class="text-xs text-slate-600 mt-1">Match letters with tasty fruits and toys.</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-purple-600">Play Now →</span>
+        </a>
+
+        <!-- Game 3 -->
+        <a href="#counting-game" class="p-5 bg-amber-50 hover:bg-amber-100 rounded-2xl border-2 border-amber-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">🔢</div>
+            <h3 class="font-black text-lg text-amber-800">Game 3: Count Objects</h3>
+            <p class="text-xs text-slate-600 mt-1">Count cute smiling apples, stars and balloons.</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-amber-700">Play Now →</span>
+        </a>
+
+        <!-- Game 4 -->
+        <a href="#numbers-section" class="p-5 bg-orange-50 hover:bg-orange-100 rounded-2xl border-2 border-orange-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">⭐</div>
+            <h3 class="font-black text-lg text-orange-800">Game 4: 1 to 100 Explorer</h3>
+            <p class="text-xs text-slate-600 mt-1">Tap any number from 1-100 to hear its name.</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-orange-700">Play Now →</span>
+        </a>
+
+        <!-- Game 5 -->
+        <a href="#hindi-game" class="p-5 bg-emerald-50 hover:bg-emerald-100 rounded-2xl border-2 border-emerald-200 card-shadow flex flex-col justify-between font-hindi">
+          <div>
+            <div class="text-4xl mb-2">🥭</div>
+            <h3 class="font-black text-lg text-emerald-800">Game 5: हिंदी वर्ण पहचान</h3>
+            <p class="text-xs text-slate-600 mt-1">आम, अनार, पतंग के पहले अक्षर की पहचान करें।</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-emerald-700">खेलें →</span>
+        </a>
+
+        <!-- Game 6 -->
+        <a href="#hindi-section" class="p-5 bg-teal-50 hover:bg-teal-100 rounded-2xl border-2 border-teal-200 card-shadow flex flex-col justify-between font-hindi">
+          <div>
+            <div class="text-4xl mb-2">🇮🇳</div>
+            <h3 class="font-black text-lg text-teal-800">Game 6: स्वर व व्यंजन</h3>
+            <p class="text-xs text-slate-600 mt-1">अ से ज्ञ तक सभी अक्षरों का सही उच्चारण सीखें।</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-teal-700">खेलें →</span>
+        </a>
+
+        <!-- Game 7 -->
+        <a href="#mixed-quiz" class="p-5 bg-blue-50 hover:bg-blue-100 rounded-2xl border-2 border-blue-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">⏭️</div>
+            <h3 class="font-black text-lg text-blue-800">Game 7: What Comes Next?</h3>
+            <p class="text-xs text-slate-600 mt-1">A के बाद क्या आता है? 3 के बाद कौन सा नंबर?</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-blue-700">Play Now →</span>
+        </a>
+
+        <!-- Game 8 -->
+        <a href="#mixed-quiz" class="p-5 bg-indigo-50 hover:bg-indigo-100 rounded-2xl border-2 border-indigo-200 card-shadow flex flex-col justify-between">
+          <div>
+            <div class="text-4xl mb-2">🏆</div>
+            <h3 class="font-black text-lg text-indigo-800">Game 8: Super Master Quiz</h3>
+            <p class="text-xs text-slate-600 mt-1">Mix questions to unlock all reward badges!</p>
+          </div>
+          <span class="mt-4 inline-block font-extrabold text-xs text-indigo-700">Play Now →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 9 & 10. SCORE BOARD & REWARD BADGES SYSTEM -->
+    <section id="rewards-section" class="bg-gradient-to-br from-yellow-200 via-amber-100 to-pink-100 rounded-3xl p-6 md:p-10 border-4 border-yellow-300 shadow-2xl relative">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="bg-yellow-300 text-amber-900 font-black text-sm px-5 py-1.5 rounded-full shadow-sm">
+          Kids Achievements & Rewards
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-amber-950 mt-3 flex items-center justify-center gap-2">
+          <span>🏆</span> Your Super Badges & Star Score
+        </h2>
+        <p class="text-amber-800 font-semibold mt-1">
+          जितने ज्यादा सही जवाब, उतने ज्यादा Badges Unlock होंगे!
+        </p>
+      </div>
+
+      <!-- Scoreboard Big Stats Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mt-8">
+        <!-- Current Score -->
+        <div class="bg-white rounded-3xl p-6 text-center border-4 border-amber-300 card-shadow">
+          <div class="text-4xl mb-1">⭐</div>
+          <h4 class="text-sm font-extrabold text-slate-500 uppercase">Current Score</h4>
+          <p id="board-score" class="text-5xl font-black text-pink-600 mt-1">0</p>
+          <span class="text-xs font-bold text-slate-400">+10 for every correct answer</span>
+        </div>
+
+        <!-- Best High Score -->
+        <div class="bg-white rounded-3xl p-6 text-center border-4 border-yellow-400 card-shadow">
+          <div class="text-4xl mb-1">👑</div>
+          <h4 class="text-sm font-extrabold text-slate-500 uppercase">Best Score</h4>
+          <p id="board-best-score" class="text-5xl font-black text-amber-600 mt-1">0</p>
+          <span class="text-xs font-bold text-slate-400">Saved in this browser</span>
+        </div>
+
+        <!-- Remaining Hearts -->
+        <div class="bg-white rounded-3xl p-6 text-center border-4 border-rose-300 card-shadow">
+          <div class="text-4xl mb-1">❤️</div>
+          <h4 class="text-sm font-extrabold text-slate-500 uppercase">Game Lives</h4>
+          <p id="board-lives" class="text-5xl font-black text-rose-600 mt-1">3 / 3</p>
+          <button onclick="refillLives()" class="mt-2 text-xs font-black text-emerald-600 hover:underline">Refill Hearts</button>
+        </div>
+      </div>
+
+      <!-- 4 Motivating Badges -->
+      <div class="mt-10">
+        <h3 class="text-center text-xl font-black text-amber-900 mb-4">🎖️ Unlockable Learning Badges</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          
+          <!-- Badge 1: ABC Star -->
+          <div id="badge-abc" class="badge-card bg-white/70 opacity-60 rounded-2xl p-5 text-center border-2 border-dashed border-slate-300 transition-all">
+            <div class="text-5xl mb-2 filter grayscale" id="badge-icon-abc">🌟</div>
+            <h4 class="font-black text-slate-800 text-sm md:text-base">ABC Star</h4>
+            <p class="text-xs text-slate-500 mt-1 font-semibold">Earn 30 Points in ABC Game</p>
+            <span class="status-txt mt-2 inline-block text-[11px] font-black text-slate-400 bg-slate-200 px-2.5 py-0.5 rounded-full">Locked 🔒</span>
+          </div>
+
+          <!-- Badge 2: Number Champion -->
+          <div id="badge-num" class="badge-card bg-white/70 opacity-60 rounded-2xl p-5 text-center border-2 border-dashed border-slate-300 transition-all">
+            <div class="text-5xl mb-2 filter grayscale" id="badge-icon-num">🔢</div>
+            <h4 class="font-black text-slate-800 text-sm md:text-base">Number Champion</h4>
+            <p class="text-xs text-slate-500 mt-1 font-semibold">Earn 30 Points in Counting</p>
+            <span class="status-txt mt-2 inline-block text-[11px] font-black text-slate-400 bg-slate-200 px-2.5 py-0.5 rounded-full">Locked 🔒</span>
+          </div>
+
+          <!-- Badge 3: Hindi Master -->
+          <div id="badge-hindi" class="badge-card bg-white/70 opacity-60 rounded-2xl p-5 text-center border-2 border-dashed border-slate-300 transition-all">
+            <div class="text-5xl mb-2 filter grayscale" id="badge-icon-hindi">🇮🇳</div>
+            <h4 class="font-black text-slate-800 text-sm md:text-base">Hindi Master</h4>
+            <p class="text-xs text-slate-500 mt-1 font-semibold">Earn 30 Points in Hindi Quiz</p>
+            <span class="status-txt mt-2 inline-block text-[11px] font-black text-slate-400 bg-slate-200 px-2.5 py-0.5 rounded-full">Locked 🔒</span>
+          </div>
+
+          <!-- Badge 4: Super Learner -->
+          <div id="badge-super" class="badge-card bg-white/70 opacity-60 rounded-2xl p-5 text-center border-2 border-dashed border-slate-300 transition-all">
+            <div class="text-5xl mb-2 filter grayscale" id="badge-icon-super">🏆</div>
+            <h4 class="font-black text-slate-800 text-sm md:text-base">Super Learner</h4>
+            <p class="text-xs text-slate-500 mt-1 font-semibold">Reach 100 Total Points</p>
+            <span class="status-txt mt-2 inline-block text-[11px] font-black text-slate-400 bg-slate-200 px-2.5 py-0.5 rounded-full">Locked 🔒</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. PARENT-FRIENDLY CONTROLS & PRIVACY STATEMENT -->
+    <section class="bg-white/90 rounded-3xl p-6 md:p-8 border-4 border-slate-200 shadow-md">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-3 border-b-2 border-slate-100 pb-4 mb-4">
+          <span class="text-3xl">🌙</span>
+          <div>
+            <h3 class="text-xl font-black text-slate-800">Parents & Teachers Control Hub</h3>
+            <p class="text-xs font-semibold text-slate-500">100% Kid Safe • No Ads • No Personal Data Collected • Runs in Browser</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+          <!-- Voice Controls -->
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+            <h4 class="font-black text-slate-800 mb-2 flex items-center gap-1.5">🔊 Voice Settings</h4>
+            <p class="text-xs text-slate-600 mb-3">Controls Web Speech Synthesis API sounds for English & Hindi pronunciations.</p>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-700">Audio Voice</span>
+              <button onclick="toggleGlobalSound()" id="parent-voice-btn" class="px-3 py-1 bg-emerald-500 text-white font-black rounded-xl text-xs">
+                Enabled
+              </button>
+            </div>
+          </div>
+
+          <!-- Score Controls -->
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+            <h4 class="font-black text-slate-800 mb-2 flex items-center gap-1.5">🔄 Score Reset</h4>
+            <p class="text-xs text-slate-600 mb-3">Reset current session score and high score stored in browser localStorage.</p>
+            <button onclick="resetGameScores()" class="w-full py-1.5 bg-rose-500 hover:bg-rose-600 text-white font-black rounded-xl text-xs transition">
+              Reset All Scores
+            </button>
+          </div>
+
+          <!-- Privacy Guarantee -->
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+            <h4 class="font-black text-slate-800 mb-2 flex items-center gap-1.5">🔒 100% Privacy-Friendly</h4>
+            <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+              <li>No signup or login required</li>
+              <li>No camera, mic or phone asked</li>
+              <li>Zero tracking or ads</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-16 bg-white border-t-4 border-amber-300 py-8 text-center text-slate-600 relative z-10">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <div class="flex items-center justify-center gap-2 text-2xl font-black text-pink-600 font-kids">
+        <span>🎨</span> SP Cartoon Kids Learning Platform <span>⭐</span>
+      </div>
+      <p class="text-sm font-bold text-slate-700">
+        "SP Cartoon for Learning ABCD, Numbers and Hindi Alphabet"
+      </p>
+      <p class="text-xs text-slate-500 font-semibold">
+        Designed with ❤️ for toddlers, kindergarteners and preschoolers. Interactive • Educational • Safe.
+      </p>
+      <div class="pt-2 flex justify-center gap-4 text-xs font-bold text-sky-600">
+        <a href="#hero" class="hover:underline">Back to Top ⬆️</a>
+        <span>•</span>
+        <a href="#abcd-section" class="hover:underline">ABCD</a>
+        <span>•</span>
+        <a href="#numbers-section" class="hover:underline">Numbers 1-100</a>
+        <span>•</span>
+        <a href="#hindi-section" class="hover:underline">हिंदी वर्णमाला</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CELEBRATION MODAL OVERLAY (Stars, Confetti & Clapping) -->
+  <div id="celebration-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center border-8 border-yellow-300 shadow-2xl transform scale-90 transition-transform duration-300 animate-pulseGlow relative">
+      <div class="text-7xl mb-3 animate-bounceSlow">🎉 ⭐ 🏆</div>
+      <h3 id="celebration-title" class="text-3xl font-black text-purple-900 leading-tight">
+        Awesome Job!
+      </h3>
+      <p id="celebration-msg" class="text-lg font-bold text-slate-600 mt-2">
+        You are a Super Learner! 🌟
+      </p>
+      <div class="mt-4 py-2 px-4 bg-amber-100 rounded-2xl text-amber-900 font-black text-xl">
+        +10 Stars Added! ⭐
+      </div>
+      <button onclick="closeCelebrationModal()" class="mt-6 w-full py-3 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black text-lg rounded-2xl shadow-lg border-2 border-white">
+        Keep Playing! 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC FOR LEARNING, GAMES, SOUND & LOCALSTORAGE -->
+  <script>
+    /* ==========================================================================
+       1. DATA DEFINITIONS: ABCD, NUMBERS, HINDI ALPHABETS
+       ========================================================================== */
+    const ABCD_DATA = [
+      { letter: 'A', word: 'Apple', emoji: '🍎', hindi: 'सेब', phrase: 'A for Apple', color: 'bg-rose-400' },
+      { letter: 'B', word: 'Ball', emoji: '⚽', hindi: 'गेंद', phrase: 'B for Ball', color: 'bg-blue-400' },
+      { letter: 'C', word: 'Cat', emoji: '🐱', hindi: 'बिल्ली', phrase: 'C for Cat', color: 'bg-amber-400' },
+      { letter: 'D', word: 'Dog', emoji: '🐶', hindi: 'कुत्ता', phrase: 'D for Dog', color: 'bg-orange-400' },
+      { letter: 'E', word: 'Elephant', emoji: '🐘', hindi: 'हाथी', phrase: 'E for Elephant', color: 'bg-indigo-400' },
+      { letter: 'F', word: 'Fish', emoji: '🐟', hindi: 'मछली', phrase: 'F for Fish', color: 'bg-teal-400' },
+      { letter: 'G', word: 'Grapes', emoji: '🍇', hindi: 'अंगूर', phrase: 'G for Grapes', color: 'bg-purple-400' },
+      { letter: 'H', word: 'Hat', emoji: '🎩', hindi: 'टोपी', phrase: 'H for Hat', color: 'bg-pink-400' },
+      { letter: 'I', word: 'Ice Cream', emoji: '🍦', hindi: 'आइसक्रीम', phrase: 'I for Ice Cream', color: 'bg-sky-400' },
+      { letter: 'J', word: 'Jug', emoji: '🧃', hindi: 'जग', phrase: 'J for Jug', color: 'bg-emerald-400' },
+      { letter: 'K', word: 'Kite', emoji: '🪁', hindi: 'पतंग', phrase: 'K for Kite', color: 'bg-red-400' },
+      { letter: 'L', word: 'Lion', emoji: '🦁', hindi: 'शेर', phrase: 'L for Lion', color: 'bg-amber-500' },
+      { letter: 'M', word: 'Monkey', emoji: '🐒', hindi: 'बंदर', phrase: 'M for Monkey', color: 'bg-yellow-500' },
+      { letter: 'N', word: 'Nest', emoji: '🪺', hindi: 'घोंसला', phrase: 'N for Nest', color: 'bg-lime-500' },
+      { letter: 'O', word: 'Orange', emoji: '🍊', hindi: 'संतरा', phrase: 'O for Orange', color: 'bg-orange-500' },
+      { letter: 'P', word: 'Parrot', emoji: '🦜', hindi: 'तोता', phrase: 'P for Parrot', color: 'bg-green-500' },
+      { letter: 'Q', word: 'Queen', emoji: '👑', hindi: 'रानी', phrase: 'Q for Queen', color: 'bg-violet-500' },
+      { letter: 'R', word: 'Rabbit', emoji: '🐰', hindi: 'खरगोश', phrase: 'R for Rabbit', color: 'bg-pink-500' },
+      { letter: 'S', word: 'Sun', emoji: '☀️', hindi: 'सूरज', phrase: 'S for Sun', color: 'bg-yellow-400' },
+      { letter: 'T', word: 'Tiger', emoji: '🐯', hindi: 'बाघ', phrase: 'T for Tiger', color: 'bg-orange-400' },
+      { letter: 'U', word: 'Umbrella', emoji: '☂️', hindi: 'छाता', phrase: 'U for Umbrella', color: 'bg-blue-500' },
+      { letter: 'V', word: 'Van', emoji: '🚐', hindi: 'गाड़ी', phrase: 'V for Van', color: 'bg-cyan-500' },
+      { letter: 'W', word: 'Watch', emoji: '⌚', hindi: 'घड़ी', phrase: 'W for Watch', color: 'bg-teal-500' },
+      { letter: 'X', word: 'Xylophone', emoji: '🎵', hindi: 'जाइलोफोन', phrase: 'X for Xylophone', color: 'bg-fuchsia-500' },
+      { letter: 'Y', word: 'Yak', emoji: '🐂', hindi: 'याक', phrase: 'Y for Yak', color: 'bg-amber-600' },
+      { letter: 'Z', word: 'Zebra', emoji: '🦓', hindi: 'ज़ेबरा', phrase: 'Z for Zebra', color: 'bg-slate-500' }
+    ];
+
+    // Numbers Names Mapping
+    const NUMBER_NAMES = [
+      '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+      'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'
+    ];
+    const TENS = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety', 'One Hundred'];
+    const HINDI_NUMS = [
+      '', 'एक', 'दो', 'तीन', 'चार', 'पाँच', 'छह', 'सात', 'आठ', 'नौ', 'दस',
+      'ग्यारह', 'बारह', 'तेरह', 'चौदह', 'पंद्रह', 'सोलह', 'सत्रह', 'अठारह', 'उन्नीस', 'बीस'
+    ];
+
+    function getNumberEnglishName(n) {
+      if (n <= 20) return NUMBER_NAMES[n];
+      if (n === 100) return 'One Hundred';
+      const ten = Math.floor(n / 10);
+      const rem = n % 10;
+      return TENS[ten] + (rem > 0 ? ' ' + NUMBER_NAMES[rem] : '');
+    }
+
+    // Hindi Swar (Vowels)
+    const HINDI_SWAR = [
+      { char: 'अ', word: 'अनार', emoji: '🍎', sound: 'अ से अनार', desc: 'Pomegranate' },
+      { char: 'आ', word: 'आम', emoji: '🥭', sound: 'आ से आम', desc: 'Mango' },
+      { char: 'इ', word: 'इमली', emoji: '🫒', sound: 'इ से इमली', desc: 'Tamarind' },
+      { char: 'ई', word: 'ईख', emoji: '🎋', sound: 'ई से ईख', desc: 'Sugarcane' },
+      { char: 'उ', word: 'उल्लू', emoji: '🦉', sound: 'उ से उल्लू', desc: 'Owl' },
+      { char: 'ऊ', word: 'ऊन', emoji: '🧶', sound: 'ऊ से ऊन', desc: 'Wool' },
+      { char: 'ऋ', word: 'ऋषि', emoji: '🧘', sound: 'ऋ से ऋषि', desc: 'Sage' },
+      { char: 'ए', word: 'एड़ी', emoji: '🦶', sound: 'ए से एड़ी', desc: 'Heel' },
+      { char: 'ऐ', word: 'ऐनक', emoji: '👓', sound: 'ऐ से ऐनक', desc: 'Glasses' },
+      { char: 'ओ', word: 'ओखली', emoji: '🥣', sound: 'ओ से ओखली', desc: 'Mortar' },
+      { char: 'औ', word: 'औरत', emoji: '👩', sound: 'औ से औरत', desc: 'Lady' },
+      { char: 'अं', word: 'अंगूर', emoji: '🍇', sound: 'अं से अंगूर', desc: 'Grapes' },
+      { char: 'अः', word: 'खाली', emoji: '✨', sound: 'अः खाली, बजाओ ताली', desc: 'Ahaha' }
+    ];
+
+    // Hindi Vyanjan (Consonants)
+    const HINDI_VYANJAN = [
+      { char: 'क', word: 'कबूतर', emoji: '🕊️', sound: 'क से कबूतर' },
+      { char: 'ख', word: 'खरगोश', emoji: '🐰', sound: 'ख से खरगोश' },
+      { char: 'ग', word: 'गमला', emoji: '🪴', sound: 'ग से गमला' },
+      { char: 'घ', word: 'घड़ी', emoji: '⌚', sound: 'घ से घड़ी' },
+      { char: 'ङ', word: 'अंग', emoji: '✨', sound: 'ङ से खाली' },
+      { char: 'च', word: 'चम्मच', emoji: '🥄', sound: 'च से चम्मच' },
+      { char: 'छ', word: 'छाता', emoji: '☂️', sound: 'छ से छाता' },
+      { char: 'ज', word: 'जहाज', emoji: '🚢', sound: 'ज से जहाज' },
+      { char: 'झ', word: 'झंडा', emoji: '🇮🇳', sound: 'झ से झंडा' },
+      { char: 'ञ', word: 'खाली', emoji: '🌟', sound: 'ञ से खाली' },
+      { char: 'ट', word: 'टमाटर', emoji: '🍅', sound: 'ट से टमाटर' },
+      { char: 'ठ', word: 'ठठेरा', emoji: '🔨', sound: 'ठ से ठठेरा' },
+      { char: 'ड', word: 'डमरू', emoji: '🥁', sound: 'ड से डमरू' },
+      { char: 'ढ', word: 'ढक्कन', emoji: '🍲', sound: 'ढ से ढक्कन' },
+      { char: 'ण', word: 'खाली', emoji: '🎈', sound: 'ण से खाली' },
+      { char: 'त', word: 'तरबूज', emoji: '🍉', sound: 'त से तरबूज' },
+      { char: 'थ', word: 'थर्मस', emoji: '🍶', sound: 'थ से थर्मस' },
+      { char: 'द', word: 'दवात', emoji: '🖋️', sound: 'द से दवात' },
+      { char: 'ध', word: 'धनुष', emoji: '🏹', sound: 'ध से धनुष' },
+      { char: 'न', word: 'नल', emoji: '🚰', sound: 'न से नल' },
+      { char: 'प', word: 'पतंग', emoji: '🪁', sound: 'प से पतंग' },
+      { char: 'फ', word: 'फल', emoji: '🍎', sound: 'फ से फल' },
+      { char: 'ब', word: 'बत्तख', emoji: '🦆', sound: 'ब से बत्तख' },
+      { char: 'भ', word: 'भालू', emoji: '🐻', sound: 'भ से भालू' },
+      { char: 'म', word: 'मछली', emoji: '🐟', sound: 'म से मछली' },
+      { char: 'य', word: 'यज्ञ', emoji: '🔥', sound: 'य से यज्ञ' },
+      { char: 'र', word: 'रथ', emoji: '🏎️', sound: 'र से रथ' },
+      { char: 'ल', word: 'लट्टू', emoji: '🪀', sound: 'ल से लट्टू' },
+      { char: 'व', word: 'वक', emoji: '🦢', sound: 'व से वक' },
+      { char: 'श', word: 'शलजम', emoji: '🧅', sound: 'श से शलजम' },
+      { char: 'ष', word: 'षट्कोण', emoji: '🔷', sound: 'ष से षट्कोण' },
+      { char: 'स', word: 'सेब', emoji: '🍎', sound: 'स से सेब' },
+      { char: 'ह', word: 'हाथी', emoji: '🐘', sound: 'ह से हाथी' },
+      { char: 'क्ष', word: 'क्षत्रिय', emoji: '⚔️', sound: 'क्ष से क्षत्रिय' },
+      { char: 'त्र', word: 'त्रिशूल', emoji: '🔱', sound: 'त्र से त्रिशूल' },
+      { char: 'ज्ञ', word: 'ज्ञानी', emoji: '📖', sound: 'ज्ञ से ज्ञानी' }
+    ];
+
+    /* ==========================================================================
+       2. GLOBAL STATE & AUDIO / SPEECH API
+       ========================================================================== */
+    let isSoundEnabled = true;
+    let currentScore = 0;
+    let bestScore = parseInt(localStorage.getItem('sp_cartoon_best_score') || '0', 10);
+    let lives = 3;
+
+    // Badges counters
+    let abcScoreCount = 0;
+    let numScoreCount = 0;
+    let hindiScoreCount = 0;
+
+    // Current Spotlight Cache
+    let currentAbc = ABCD_DATA[0];
+    let currentNum = 5;
+    let currentHindi = HINDI_SWAR[0];
+
+    // Sound Synthesis Function
+    function speakText(text, lang = 'en-US') {
+      if (!isSoundEnabled) return;
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel(); // stop previous voice
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = 0.9; // Friendly slower kid pace
+      utterance.pitch = 1.15; // Friendly slightly cheerful pitch
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleGlobalSound() {
+      isSoundEnabled = !isSoundEnabled;
+      const statusTxt = document.getElementById('sound-status-txt');
+      const soundIcon = document.getElementById('sound-icon');
+      const parentBtn = document.getElementById('parent-voice-btn');
+
+      if (isSoundEnabled) {
+        soundIcon.textContent = '🔊';
+        if (statusTxt) statusTxt.textContent = 'Voice ON';
+        if (parentBtn) {
+          parentBtn.textContent = 'Enabled';
+          parentBtn.className = 'px-3 py-1 bg-emerald-500 text-white font-black rounded-xl text-xs';
+        }
+        speakText('Voice is now on! Welcome to S P Cartoon!');
+      } else {
+        soundIcon.textContent = '🔇';
+        if (statusTxt) statusTxt.textContent = 'Muted';
+        if (parentBtn) {
+          parentBtn.textContent = 'Disabled';
+          parentBtn.className = 'px-3 py-1 bg-slate-400 text-white font-black rounded-xl text-xs';
+        }
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    /* ==========================================================================
+       3. SCORE & REWARDS LOGIC
+       ========================================================================== */
+    function updateScoreUI() {
+      document.getElementById('top-score-display').textContent = currentScore;
+      document.getElementById('board-score').textContent = currentScore;
+      document.getElementById('board-best-score').textContent = bestScore;
+      document.getElementById('lives-display').textContent = lives;
+      document.getElementById('board-lives').textContent = `${lives} / 3`;
+
+      // Check Badges
+      checkBadgeUnlocks();
+    }
+
+    function addScore(points = 10, type = 'general') {
+      currentScore += points;
+      if (type === 'abc') abcScoreCount += points;
+      if (type === 'num') numScoreCount += points;
+      if (type === 'hindi') hindiScoreCount += points;
+
+      if (currentScore > bestScore) {
+        bestScore = currentScore;
+        localStorage.setItem('sp_cartoon_best_score', bestScore.toString());
+      }
+      updateScoreUI();
+      triggerConfetti();
+    }
+
+    function deductLife() {
+      lives = Math.max(0, lives - 1);
+      updateScoreUI();
+      if (lives === 0) {
+        setTimeout(() => {
+          alert('❤️ All Hearts used! Refilling hearts so you can keep playing and learning!');
+          refillLives();
+        }, 300);
+      }
+    }
+
+    function refillLives() {
+      lives = 3;
+      updateScoreUI();
+      speakText('All hearts refilled! Let us play again!');
+    }
+
+    function resetGameScores() {
+      if (confirm('Are you sure you want to reset all game scores?')) {
+        currentScore = 0;
+        bestScore = 0;
+        lives = 3;
+        abcScoreCount = 0;
+        numScoreCount = 0;
+        hindiScoreCount = 0;
+        localStorage.removeItem('sp_cartoon_best_score');
+        updateScoreUI();
+        speakText('All scores have been reset.');
+      }
+    }
+
+    function checkBadgeUnlocks() {
+      // 1. ABC Star (30 pts)
+      if (abcScoreCount >= 30) unlockBadgeUI('badge-abc', 'badge-icon-abc', '⭐ ABC Star');
+      // 2. Number Champion (30 pts)
+      if (numScoreCount >= 30) unlockBadgeUI('badge-num', 'badge-icon-num', '🔢 Number Pro');
+      // 3. Hindi Master (30 pts)
+      if (hindiScoreCount >= 30) unlockBadgeUI('badge-hindi', 'badge-icon-hindi', '🇮🇳 Hindi Master');
+      // 4. Super Learner (100 total pts)
+      if (currentScore >= 100) unlockBadgeUI('badge-super', 'badge-icon-super', '🏆 Super Star');
+    }
+
+    function unlockBadgeUI(badgeId, iconId, title) {
+      const card = document.getElementById(badgeId);
+      const icon = document.getElementById(iconId);
+      if (!card || card.classList.contains('unlocked')) return;
+
+      card.classList.remove('opacity-60', 'border-dashed', 'border-slate-300');
+      card.classList.add('unlocked', 'bg-yellow-100', 'border-yellow-400', 'shadow-lg', 'scale-105');
+      icon.classList.remove('filter', 'grayscale');
+
+      const status = card.querySelector('.status-txt');
+      if (status) {
+        status.textContent = 'Unlocked! 🎉';
+        status.className = 'status-txt mt-2 inline-block text-[11px] font-black text-amber-900 bg-yellow-300 px-3 py-0.5 rounded-full';
+      }
+    }
+
+    /* ==========================================================================
+       4. CELEBRATION MODAL & CONFETTI
+       ========================================================================== */
+    function triggerCelebration(title, msg) {
+      const overlay = document.getElementById('celebration-overlay');
+      const t = document.getElementById('celebration-title');
+      const m = document.getElementById('celebration-msg');
+      t.textContent = title || '🎉 Awesome! Great Job!';
+      m.textContent = msg || 'You are learning so fast! Keep it up!';
+      overlay.classList.remove('hidden');
+
+      // Clapping speech effect
+      speakText('Yay! Fantastic! Super Learner!');
+      triggerConfetti();
+    }
+
+    function closeCelebrationModal() {
+      document.getElementById('celebration-overlay').classList.add('hidden');
+    }
+
+    function triggerConfetti() {
+      const colors = ['#FF5757', '#FFDE59', '#7ED957', '#5CE1E6', '#FF66C4', '#8C52FF'];
+      for (let i = 0; i < 35; i++) {
+        const conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        conf.style.animationDuration = (2 + Math.random() * 2) + 's';
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 3500);
+      }
+    }
+
+    /* ==========================================================================
+       5. RENDER ABCD SECTION & SPOTLIGHT
+       ========================================================================== */
+    function renderAbcdGrid() {
+      const grid = document.getElementById('abcd-grid');
+      grid.innerHTML = '';
+
+      ABCD_DATA.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = `p-3 rounded-2xl bg-white border-2 border-pink-200 card-shadow flex flex-col items-center justify-center cursor-pointer text-center group`;
+        card.innerHTML = `
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-2xl font-black ${item.color} shadow-sm group-hover:scale-110 transition-transform">
+            ${item.letter}
+          </div>
+          <span class="text-3xl my-1 group-hover:rotate-12 transition-transform">${item.emoji}</span>
+          <span class="text-xs font-black text-slate-700">${item.word}</span>
+          <span class="text-[11px] font-bold text-pink-600">${item.hindi}</span>
+        `;
+        card.onclick = () => selectAbcLetter(item);
+        grid.appendChild(card);
+      });
+    }
+
+    function selectAbcLetter(item) {
+      currentAbc = item;
+      document.getElementById('spotlight-letter').textContent = item.letter;
+      document.getElementById('spotlight-emoji').textContent = item.emoji;
+      document.getElementById('spotlight-word').textContent = item.word;
+      document.getElementById('spotlight-phrase').textContent = `"${item.phrase}" (${item.hindi})`;
+
+      speakSpotlightAbc();
+    }
+
+    function speakSpotlightAbc() {
+      speakText(`${currentAbc.letter} for ${currentAbc.word}. ${currentAbc.word}.`);
+    }
+
+    function playAbcSongVoice() {
+      speakText('A B C D E F G, H I J K L M N O P, Q R S, T U V, W X Y and Z. Now I know my A B C, next time won’t you sing with me!');
+    }
+
+    /* ==========================================================================
+       6. ABCD MATCHING GAME LOGIC
+       ========================================================================== */
+    let currentAbcQuestion = null;
+
+    function generateAbcGameQuestion() {
+      const randomIndex = Math.floor(Math.random() * ABCD_DATA.length);
+      currentAbcQuestion = ABCD_DATA[randomIndex];
+
+      document.getElementById('abc-game-emoji').textContent = currentAbcQuestion.emoji;
+      document.getElementById('abc-game-hint').textContent = `What letter starts "${currentAbcQuestion.word}"?`;
+      document.getElementById('abc-game-feedback').textContent = 'Click the correct letter below! 👇';
+      document.getElementById('abc-game-feedback').className = 'mt-3 text-lg font-black h-8 text-purple-600';
+
+      // 4 choices including correct letter
+      const choices = [currentAbcQuestion.letter];
+      while (choices.length < 4) {
+        const randomChar = ABCD_DATA[Math.floor(Math.random() * ABCD_DATA.length)].letter;
+        if (!choices.includes(randomChar)) choices.push(randomChar);
+      }
+      // Shuffle
+      choices.sort(() => Math.random() - 0.5);
+
+      const optionsContainer = document.getElementById('abc-game-options');
+      optionsContainer.innerHTML = '';
+      choices.forEach(letter => {
+        const btn = document.createElement('button');
+        btn.className = 'py-4 text-3xl font-black rounded-2xl bg-white border-4 border-purple-300 text-purple-900 card-shadow hover:bg-purple-500 hover:text-white transition';
+        btn.textContent = letter;
+        btn.onclick = () => checkAbcAnswer(letter, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkAbcAnswer(selectedLetter, btnElement) {
+      const feedback = document.getElementById('abc-game-feedback');
+      if (selectedLetter === currentAbcQuestion.letter) {
+        feedback.textContent = `🎉 Correct! ${currentAbcQuestion.letter} for ${currentAbcQuestion.word}!`;
+        feedback.className = 'mt-3 text-xl font-black h-8 text-emerald-600 animate-bounce';
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        addScore(10, 'abc');
+        speakText(`Correct! ${currentAbcQuestion.letter} for ${currentAbcQuestion.word}! Great job!`);
+
+        setTimeout(() => {
+          generateAbcGameQuestion();
+        }, 1600);
+      } else {
+        feedback.textContent = `😊 Try Again! Not ${selectedLetter}.`;
+        feedback.className = 'mt-3 text-lg font-black h-8 text-rose-600';
+        btnElement.classList.add('bg-rose-200', 'text-rose-800', 'border-rose-400');
+        deductLife();
+        speakText(`Try again! What starts with ${currentAbcQuestion.word}?`);
+      }
+    }
+
+    function speakAbcGameHint() {
+      if (currentAbcQuestion) {
+        speakText(`This is an ${currentAbcQuestion.word}. It starts with the letter ${currentAbcQuestion.letter}.`);
+      }
+    }
+
+    /* ==========================================================================
+       7. NUMBERS 1-100 LEARNING & SPOTLIGHT
+       ========================================================================== */
+    let currentNumberRange = [1, 10];
+
+    function setNumberRange(start, end) {
+      currentNumberRange = [start, end];
+      document.querySelectorAll('.num-filter-btn').forEach(b => {
+        b.className = 'num-filter-btn px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+      });
+      const activeBtn = document.querySelector(`.num-filter-btn[data-range="${start}-${end}"]`);
+      if (activeBtn) activeBtn.className = 'num-filter-btn px-3 py-1.5 rounded-xl bg-amber-500 text-white shadow';
+
+      renderNumbersGrid();
+    }
+
+    function renderNumbersGrid() {
+      const grid = document.getElementById('numbers-grid');
+      grid.innerHTML = '';
+      const [start, end] = currentNumberRange;
+
+      for (let i = start; i <= end; i++) {
+        const card = document.createElement('div');
+        card.className = `p-3 bg-white rounded-2xl border-2 border-amber-200 card-shadow flex flex-col items-center justify-center cursor-pointer text-center group hover:bg-amber-50`;
+        card.innerHTML = `
+          <span class="text-2xl font-black text-amber-900 group-hover:scale-125 transition-transform">${i}</span>
+          <span class="text-[10px] font-bold text-slate-500 mt-0.5 truncate w-full">${getNumberEnglishName(i)}</span>
+        `;
+        card.onclick = () => selectNumber(i);
+        grid.appendChild(card);
+      }
+    }
+
+    function selectNumber(num) {
+      currentNum = num;
+      document.getElementById('spotlight-num-val').textContent = num;
+      const engName = getNumberEnglishName(num);
+      document.getElementById('spotlight-num-name').textContent = engName;
+      document.getElementById('spotlight-num-hindi').textContent = (num <= 20 ? HINDI_NUMS[num] : '') + ` (${num})`;
+
+      // Render fruit objects for counting up to 30, or a representative bunch for >30
+      const objectsContainer = document.getElementById('spotlight-num-objects');
+      objectsContainer.innerHTML = '';
+      const maxIcons = Math.min(num, 30);
+      const iconArray = ['🍎', '⭐', '🎈', '🍓', '🍬', '🚗'];
+      const chosenIcon = iconArray[num % iconArray.length];
+
+      for (let k = 0; k < maxIcons; k++) {
+        const span = document.createElement('span');
+        span.textContent = chosenIcon;
+        objectsContainer.appendChild(span);
+      }
+      if (num > 30) {
+        const moreSpan = document.createElement('span');
+        moreSpan.className = 'text-xs font-bold text-amber-800 self-center ml-2';
+        moreSpan.textContent = `+ ${num - 30} more!`;
+        objectsContainer.appendChild(moreSpan);
+      }
+
+      speakSpotlightNum();
+    }
+
+    function speakSpotlightNum() {
+      const engName = getNumberEnglishName(currentNum);
+      speakText(`${currentNum}. ${engName}.`);
+    }
+
+    /* ==========================================================================
+       8. NUMBER COUNTING GAME
+       ========================================================================== */
+    let currentCountQuestion = null;
+
+    function generateCountGameQuestion() {
+      // Pick random number between 2 and 10
+      const count = Math.floor(Math.random() * 9) + 2;
+      const emojis = ['🍎', '🍌', '⚽', '🚗', '⭐', '🎈', '🐱', '🐶'];
+      const chosenEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+      currentCountQuestion = { count, emoji: chosenEmoji };
+
+      const objectsContainer = document.getElementById('count-game-objects');
+      objectsContainer.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'transform hover:scale-125 transition-transform cursor-pointer';
+        span.textContent = chosenEmoji;
+        objectsContainer.appendChild(span);
+      }
+
+      document.getElementById('count-game-question').textContent = `How many ${chosenEmoji} are there?`;
+      document.getElementById('count-game-feedback').textContent = 'Count carefully and pick your answer! 👇';
+      document.getElementById('count-game-feedback').className = 'mt-3 text-lg font-black h-8 text-orange-600';
+
+      // 4 choices
+      const choices = [count];
+      while (choices.length < 4) {
+        const rand = Math.floor(Math.random() * 9) + 2;
+        if (!choices.includes(rand)) choices.push(rand);
+      }
+      choices.sort(() => Math.random() - 0.5);
+
+      const optionsContainer = document.getElementById('count-game-options');
+      optionsContainer.innerHTML = '';
+      choices.forEach(val => {
+        const btn = document.createElement('button');
+        btn.className = 'py-4 text-3xl font-black rounded-2xl bg-white border-4 border-orange-300 text-orange-950 card-shadow hover:bg-orange-500 hover:text-white transition';
+        btn.textContent = val;
+        btn.onclick = () => checkCountAnswer(val, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkCountAnswer(selectedCount, btnElement) {
+      const feedback = document.getElementById('count-game-feedback');
+      if (selectedCount === currentCountQuestion.count) {
+        feedback.textContent = `🎉 Awesome! Exactly ${currentCountQuestion.count} objects!`;
+        feedback.className = 'mt-3 text-xl font-black h-8 text-emerald-600 animate-bounce';
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        addScore(10, 'num');
+        speakText(`Awesome! Correct answer! ${currentCountQuestion.count}!`);
+
+        setTimeout(() => {
+          generateCountGameQuestion();
+        }, 1600);
+      } else {
+        feedback.textContent = `💡 Try Again! Let's count them one by one!`;
+        feedback.className = 'mt-3 text-lg font-black h-8 text-rose-600';
+        btnElement.classList.add('bg-rose-200', 'text-rose-800', 'border-rose-400');
+        deductLife();
+        speakText(`Not quite. Try counting again!`);
+      }
+    }
+
+    function speakCountQuestion() {
+      if (currentCountQuestion) {
+        speakText(`How many items do you see? Count them!`);
+      }
+    }
+
+    /* ==========================================================================
+       9. HINDI ALPHABET (SWAR & VYANJAN) LEARNING & SPOTLIGHT
+       ========================================================================== */
+    function renderHindiAlphabet() {
+      // Render Swar
+      const swarGrid = document.getElementById('hindi-swar-grid');
+      swarGrid.innerHTML = '';
+      HINDI_SWAR.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'p-3 bg-white rounded-2xl border-2 border-emerald-200 card-shadow flex flex-col items-center justify-center cursor-pointer text-center group';
+        card.innerHTML = `
+          <span class="text-3xl font-black text-emerald-800 group-hover:scale-125 transition-transform font-hindi">${item.char}</span>
+          <span class="text-2xl my-0.5">${item.emoji}</span>
+          <span class="text-xs font-bold text-slate-700 font-hindi">${item.word}</span>
+        `;
+        card.onclick = () => selectHindiChar(item);
+        swarGrid.appendChild(card);
+      });
+
+      // Render Vyanjan
+      const vyanjanGrid = document.getElementById('hindi-vyanjan-grid');
+      vyanjanGrid.innerHTML = '';
+      HINDI_VYANJAN.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'p-3 bg-white rounded-2xl border-2 border-teal-200 card-shadow flex flex-col items-center justify-center cursor-pointer text-center group';
+        card.innerHTML = `
+          <span class="text-3xl font-black text-teal-800 group-hover:scale-125 transition-transform font-hindi">${item.char}</span>
+          <span class="text-2xl my-0.5">${item.emoji}</span>
+          <span class="text-xs font-bold text-slate-700 font-hindi">${item.word}</span>
+        `;
+        card.onclick = () => selectHindiChar(item);
+        vyanjanGrid.appendChild(card);
+      });
+    }
+
+    function selectHindiChar(item) {
+      currentHindi = item;
+      document.getElementById('spotlight-hindi-char').textContent = item.char;
+      document.getElementById('spotlight-hindi-emoji').textContent = item.emoji;
+      document.getElementById('spotlight-hindi-word').textContent = `${item.word} ${item.desc ? '(' + item.desc + ')' : ''}`;
+      document.getElementById('spotlight-hindi-phrase').textContent = `"${item.sound}"`;
+
+      speakSpotlightHindi();
+    }
+
+    function speakSpotlightHindi() {
+      speakText(`${currentHindi.sound}`, 'hi-IN');
+    }
+
+    function filterHindiGroup(group) {
+      const swarSec = document.getElementById('hindi-swar-container');
+      const vyanjanSec = document.getElementById('hindi-vyanjan-container');
+
+      document.getElementById('btn-hindi-all').className = 'px-4 py-2 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+      document.getElementById('btn-hindi-swar').className = 'px-4 py-2 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+      document.getElementById('btn-hindi-vyanjan').className = 'px-4 py-2 rounded-2xl bg-slate-100 text-slate-700 hover:bg-slate-200';
+
+      if (group === 'swar') {
+        swarSec.classList.remove('hidden');
+        vyanjanSec.classList.add('hidden');
+        document.getElementById('btn-hindi-swar').className = 'px-4 py-2 rounded-2xl bg-emerald-600 text-white shadow';
+      } else if (group === 'vyanjan') {
+        swarSec.classList.add('hidden');
+        vyanjanSec.classList.remove('hidden');
+        document.getElementById('btn-hindi-vyanjan').className = 'px-4 py-2 rounded-2xl bg-emerald-600 text-white shadow';
+      } else {
+        swarSec.classList.remove('hidden');
+        vyanjanSec.classList.remove('hidden');
+        document.getElementById('btn-hindi-all').className = 'px-4 py-2 rounded-2xl bg-emerald-600 text-white shadow';
+      }
+    }
+
+    /* ==========================================================================
+       10. HINDI MATCHING QUIZ GAME
+       ========================================================================== */
+    let currentHindiQuestion = null;
+
+    function generateHindiGameQuestion() {
+      // Pick random item from Swar or Vyanjan
+      const pool = [...HINDI_SWAR.slice(0, 10), ...HINDI_VYANJAN.slice(0, 20)];
+      currentHindiQuestion = pool[Math.floor(Math.random() * pool.length)];
+
+      document.getElementById('hindi-game-emoji').textContent = currentHindiQuestion.emoji;
+      document.getElementById('hindi-game-hint').textContent = `यह "${currentHindiQuestion.word}" किस अक्षर से शुरू होता है?`;
+      document.getElementById('hindi-game-feedback').textContent = 'सही अक्षर पर क्लिक करें! 👇';
+      document.getElementById('hindi-game-feedback').className = 'mt-3 text-lg font-black h-8 text-teal-700';
+
+      // 4 choices
+      const choices = [currentHindiQuestion.char];
+      while (choices.length < 4) {
+        const randItem = pool[Math.floor(Math.random() * pool.length)].char;
+        if (!choices.includes(randItem)) choices.push(randItem);
+      }
+      choices.sort(() => Math.random() - 0.5);
+
+      const optionsContainer = document.getElementById('hindi-game-options');
+      optionsContainer.innerHTML = '';
+      choices.forEach(ch => {
+        const btn = document.createElement('button');
+        btn.className = 'py-4 text-3xl font-black rounded-2xl bg-white border-4 border-teal-300 text-teal-950 card-shadow hover:bg-teal-600 hover:text-white transition font-hindi';
+        btn.textContent = ch;
+        btn.onclick = () => checkHindiAnswer(ch, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkHindiAnswer(selectedChar, btnElement) {
+      const feedback = document.getElementById('hindi-game-feedback');
+      if (selectedChar === currentHindiQuestion.char) {
+        feedback.textContent = `🎉 बहुत बढ़िया! ${currentHindiQuestion.sound}!`;
+        feedback.className = 'mt-3 text-xl font-black h-8 text-emerald-600 animate-bounce';
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        addScore(10, 'hindi');
+        speakText(`बहुत बढ़िया! ${currentHindiQuestion.sound}!`, 'hi-IN');
+
+        setTimeout(() => {
+          generateHindiGameQuestion();
+        }, 1600);
+      } else {
+        feedback.textContent = `😊 फिर से कोशिश करें! यह ${selectedChar} नहीं है।`;
+        feedback.className = 'mt-3 text-lg font-black h-8 text-rose-600';
+        btnElement.classList.add('bg-rose-200', 'text-rose-800', 'border-rose-400');
+        deductLife();
+        speakText(`फिर से कोशिश करें!`, 'hi-IN');
+      }
+    }
+
+    function speakHindiGameHint() {
+      if (currentHindiQuestion) {
+        speakText(`यह ${currentHindiQuestion.word} है। यह ${currentHindiQuestion.char} से शुरू होता है।`, 'hi-IN');
+      }
+    }
+
+    /* ==========================================================================
+       11. MIXED LEARNING SUPER CHALLENGE (WHAT COMES NEXT?)
+       ========================================================================== */
+    const MIXED_QUESTIONS_BANK = [
+      {
+        category: 'Alphabet Sequence',
+        question: 'Which letter comes after B?',
+        hint: '🅰️ 🅱️ ❓',
+        correct: 'C',
+        options: ['A', 'C', 'D', 'E'],
+        speak: 'Which letter comes after B? A, C, D, or E?'
+      },
+      {
+        category: 'Alphabet Sequence',
+        question: 'Which letter comes after P?',
+        hint: '🅿️ ❓',
+        correct: 'Q',
+        options: ['O', 'Q', 'R', 'S'],
+        speak: 'Which letter comes after P?'
+      },
+      {
+        category: 'Number Sequence',
+        question: '3 के बाद कौन सा Number आता है?',
+        hint: '1️⃣ 2️⃣ 3️⃣ ❓',
+        correct: '4',
+        options: ['2', '4', '5', '6'],
+        speak: 'तीन के बाद कौन सा नंबर आता है?',
+        lang: 'hi-IN'
+      },
+      {
+        category: 'Number Sequence',
+        question: 'What comes after 9?',
+        hint: '7️⃣ 8️⃣ 9️⃣ ❓',
+        correct: '10',
+        options: ['8', '10', '11', '12'],
+        speak: 'What number comes after 9?'
+      },
+      {
+        category: 'Hindi Sequence',
+        question: 'अ के बाद कौन सा अक्षर आता है?',
+        hint: 'अ ❓',
+        correct: 'आ',
+        options: ['आ', 'इ', 'ई', 'उ'],
+        speak: 'अ के बाद कौन सा अक्षर आता है?',
+        lang: 'hi-IN'
+      },
+      {
+        category: 'Hindi Sequence',
+        question: 'क के बाद कौन सा अक्षर आता है?',
+        hint: 'क ❓',
+        correct: 'ख',
+        options: ['ग', 'ख', 'घ', 'च'],
+        speak: 'क के बाद कौन सा अक्षर आता है?',
+        lang: 'hi-IN'
+      },
+      {
+        category: 'Word Identification',
+        question: 'Which one is an Apple? 🍎',
+        hint: '🍎 ⚽ 🚗',
+        correct: 'Apple',
+        options: ['Ball', 'Apple', 'Car', 'Cat'],
+        speak: 'Which word matches the red apple?'
+      }
+    ];
+
+    let currentMixedIndex = 0;
+
+    function generateMixedQuestion() {
+      currentMixedIndex = Math.floor(Math.random() * MIXED_QUESTIONS_BANK.length);
+      const q = MIXED_QUESTIONS_BANK[currentMixedIndex];
+
+      document.getElementById('mixed-category-badge').textContent = q.category;
+      document.getElementById('mixed-question-text').textContent = q.question;
+      document.getElementById('mixed-visual-hint').textContent = q.hint;
+      document.getElementById('mixed-feedback').textContent = 'Choose your answer! 👇';
+      document.getElementById('mixed-feedback').className = 'mt-3 text-lg font-black h-8 text-blue-600';
+
+      const container = document.getElementById('mixed-options-container');
+      container.innerHTML = '';
+
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'py-3.5 px-4 text-xl sm:text-2xl font-black rounded-2xl bg-white border-4 border-blue-300 text-blue-950 card-shadow hover:bg-blue-600 hover:text-white transition';
+        btn.textContent = opt;
+        btn.onclick = () => checkMixedAnswer(opt, btn);
+        container.appendChild(btn);
+      });
+    }
+
+    function checkMixedAnswer(selectedOption, btnElement) {
+      const q = MIXED_QUESTIONS_BANK[currentMixedIndex];
+      const feedback = document.getElementById('mixed-feedback');
+
+      if (selectedOption === q.correct) {
+        feedback.textContent = `🎉 Fantastic! ${q.correct} is correct!`;
+        feedback.className = 'mt-3 text-xl font-black h-8 text-emerald-600 animate-bounce';
+        btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        addScore(10, 'general');
+
+        if (q.lang === 'hi-IN') {
+          speakText(`बहुत बढ़िया! सही उत्तर ${q.correct}!`, 'hi-IN');
+        } else {
+          speakText(`Fantastic! Correct answer ${q.correct}!`);
+        }
+
+        setTimeout(() => {
+          generateMixedQuestion();
+        }, 1600);
+      } else {
+        feedback.textContent = `😊 Oops! Try Again!`;
+        feedback.className = 'mt-3 text-lg font-black h-8 text-rose-600';
+        btnElement.classList.add('bg-rose-200', 'text-rose-800', 'border-rose-400');
+        deductLife();
+        speakText('Oops, try again!');
+      }
+    }
+
+    function speakMixedQuestion() {
+      const q = MIXED_QUESTIONS_BANK[currentMixedIndex];
+      speakText(q.speak, q.lang || 'en-US');
+    }
+
+    function openParentModal() {
+      const parentSec = document.querySelector('section:last-of-type');
+      if (parentSec) {
+        parentSec.scrollIntoView({ behavior: 'smooth' });
+        parentSec.classList.add('ring-4', 'ring-yellow-400');
+        setTimeout(() => parentSec.classList.remove('ring-4', 'ring-yellow-400'), 2500);
+      }
+    }
+
+    /* ==========================================================================
+       12. INITIALIZATION ON PAGE LOAD
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Render Initial Grids
+      renderAbcdGrid();
+      renderNumbersGrid();
+      renderHindiAlphabet();
+
+      // Setup First Questions
+      generateAbcGameQuestion();
+      generateCountGameQuestion();
+      generateHindiGameQuestion();
+      generateMixedQuestion();
+
+      // Load UI Scores
+      updateScoreUI();
+    });
+  </script>
+</body>
+</html>
